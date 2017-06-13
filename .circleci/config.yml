@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     working_directory: /var/www/html
-#    docker:
-#      - image: t3kit/ubuntu16-php7-apache:0.1.1
+    docker:
+      - image: t3kit/ubuntu16-php7-apache:0.1.1
 #        ports:
 #          - "8888:80"
 #        volumes:
