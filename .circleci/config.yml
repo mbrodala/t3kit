@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /var/www
+    working_directory: /var/www/html
     docker:
       - image: notnoopci/php:7.1.5-browsers
 #        ports:
