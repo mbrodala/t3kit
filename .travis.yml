@@ -1,0 +1,40 @@
+notifications:
+  email: false
+
+sudo: required
+
+language: php
+
+php:
+  - 7.0
+  - 7.1
+
+services:
+  - docker
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.4.2
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - composer self-update
+  - composer --version
+
+script:
+
+  - >
+    echo;
+    echo "Running docker-compose up";
+    docker-compose up -d
+
+  - >
+    echo;
+    echo "Install t3kit database";
+    docker exec -it web /t3kit_db/setupdb.sh
